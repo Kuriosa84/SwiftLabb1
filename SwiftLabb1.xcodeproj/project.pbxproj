@@ -13,6 +13,13 @@
 		472115E91E5347BB0063B853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 472115E81E5347BB0063B853 /* Assets.xcassets */; };
 		472115EC1E5347BB0063B853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 472115EA1E5347BB0063B853 /* LaunchScreen.storyboard */; };
 		472115F41E534D040063B853 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472115F31E534D040063B853 /* OtherViewController.swift */; };
+		472176091E5C38150047096D /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176081E5C38150047096D /* DemoTableViewController.swift */; };
+		4721760B1E5C40BB0047096D /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760A1E5C40BB0047096D /* MyTableViewCell.swift */; };
+		4721760D1E5C5C780047096D /* MyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760C1E5C5C780047096D /* MyTableView.swift */; };
+		4721760F1E61E5CD0047096D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760E1E61E5CD0047096D /* MenuViewController.swift */; };
+		472176111E61F2AF0047096D /* QueryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176101E61F2AF0047096D /* QueryTableViewController.swift */; };
+		472176131E61FD9A0047096D /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176121E61FD9A0047096D /* NutritionViewController.swift */; };
+		472176171E6203110047096D /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176161E6203110047096D /* FavouritesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		472115EB1E5347BB0063B853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		472115ED1E5347BB0063B853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		472115F31E534D040063B853 /* OtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		472176081E5C38150047096D /* DemoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
+		4721760A1E5C40BB0047096D /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		4721760C1E5C5C780047096D /* MyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableView.swift; sourceTree = "<group>"; };
+		4721760E1E61E5CD0047096D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		472176101E61F2AF0047096D /* QueryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTableViewController.swift; sourceTree = "<group>"; };
+		472176121E61FD9A0047096D /* NutritionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionViewController.swift; sourceTree = "<group>"; };
+		472176161E6203110047096D /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesTableViewController.swift; path = ../FavouritesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +70,17 @@
 		472115E01E5347BB0063B853 /* SwiftLabb1 */ = {
 			isa = PBXGroup;
 			children = (
+				472176161E6203110047096D /* FavouritesTableViewController.swift */,
 				472115E11E5347BB0063B853 /* AppDelegate.swift */,
 				472115E31E5347BB0063B853 /* ViewController.swift */,
+				472176081E5C38150047096D /* DemoTableViewController.swift */,
+				4721760A1E5C40BB0047096D /* MyTableViewCell.swift */,
 				472115E51E5347BB0063B853 /* Main.storyboard */,
+				4721760E1E61E5CD0047096D /* MenuViewController.swift */,
+				4721760C1E5C5C780047096D /* MyTableView.swift */,
+				472176121E61FD9A0047096D /* NutritionViewController.swift */,
 				472115F31E534D040063B853 /* OtherViewController.swift */,
+				472176101E61F2AF0047096D /* QueryTableViewController.swift */,
 				472115E81E5347BB0063B853 /* Assets.xcassets */,
 				472115EA1E5347BB0063B853 /* LaunchScreen.storyboard */,
 				472115ED1E5347BB0063B853 /* Info.plist */,
@@ -139,8 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				472176091E5C38150047096D /* DemoTableViewController.swift in Sources */,
+				472176171E6203110047096D /* FavouritesTableViewController.swift in Sources */,
 				472115E41E5347BB0063B853 /* ViewController.swift in Sources */,
 				472115F41E534D040063B853 /* OtherViewController.swift in Sources */,
+				472176131E61FD9A0047096D /* NutritionViewController.swift in Sources */,
+				4721760F1E61E5CD0047096D /* MenuViewController.swift in Sources */,
+				4721760D1E5C5C780047096D /* MyTableView.swift in Sources */,
+				4721760B1E5C40BB0047096D /* MyTableViewCell.swift in Sources */,
+				472176111E61F2AF0047096D /* QueryTableViewController.swift in Sources */,
 				472115E21E5347BB0063B853 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +329,7 @@
 				472115F21E5347BB0063B853 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
