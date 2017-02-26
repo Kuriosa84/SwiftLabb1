@@ -12,12 +12,15 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var FoodSearchBar: UITextField!
     
-    var searchResult : [String] = []
+    var searchResult : [String] = ["Tjo", "Halloj"]
+    
+    var searchQuery : String = "citron"
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSLog("Hejsan hoppsan jag är nslog")
         // Do any additional setup after loading the view.
     }
     
@@ -31,9 +34,16 @@ class MenuViewController: UIViewController {
         if let identifier = segue.identifier {
             switch identifier {
             case "QuerySegue":
-                if let searchQuery = FoodSearchBar.text?.lowercased(),
-                   let vc = segue.destination as? QueryTableViewController {
-                    vc.query = searchQuery
+                if let searchQuery = FoodSearchBar.text?.lowercased() {
+                    self.searchQuery = searchQuery
+                }
+                   if let vc = segue.destination as? QueryTableViewController {
+                        vc.query = self.searchQuery
+                        if let actualQuery = vc.query {
+                            NSLog("Queryn är %@", actualQuery)
+                        }
+                   } else {
+                    NSLog("Viewcontrollern finns inte...")
                 }
             default: break
             }
@@ -45,7 +55,7 @@ class MenuViewController: UIViewController {
     }
     
     func search(query : String) {
-        searchResult = []
+        self.searchResult = []
         let urlString = "http://matapi.se/foodstuff?query=\(query)"
         let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         if let url = URL(string: safeUrlString!)

@@ -10,17 +10,18 @@ import UIKit
 
 class QueryTableViewController: UITableViewController {
     
-    var query : String = "banan"
+    var query : String?
     
-    var searchResult : [String] = ["Hej", "Tjosan"]
+    var searchResult : [(String, Int)] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         definesPresentationContext = true
-        
-        search(query: query)
-        
+        if let actualQuery = query {
+            search(query: actualQuery)
+        }
         
         
         //searchController = UISearchController(searchResultsController:nil)
@@ -52,9 +53,10 @@ class QueryTableViewController: UITableViewController {
                                 //let calories = nutrientValuesDictionary["energyKcal"] as? Int,
                             DispatchQueue.main.async {
                                 for dictionary in parsed {
-                                    if let foodName = dictionary["name"] as? String {
+                                    if let foodName = dictionary["name"] as? String,
+                                        let foodNumber = dictionary["number"] as? Int {
                                         
-                                        self.searchResult.append(foodName)
+                                        self.searchResult.append((foodName,foodNumber))
                                         
                                     } else {
                                         NSLog("Failed to find 'nutrientValues' or 'energyKcal' in json object.")
@@ -114,7 +116,9 @@ class QueryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = searchResult[indexPath.row]
+        let (foodName, foodNumber) = searchResult[indexPath.row]
+        cell.textLabel?.text = foodName
+        cell.foodQueryIndex = foodNumber
         /*
         if shouldUseSearchResult {
             cell.textLabel?.text = searchResult[indexPath.row]
