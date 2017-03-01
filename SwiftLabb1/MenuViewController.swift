@@ -11,17 +11,33 @@ import UIKit
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var FoodSearchBar: UITextField!
+    @IBOutlet weak var apple: UILabel!
+    @IBOutlet weak var matematik: UILabel!
     
     var searchResult : [String] = ["Tjo", "Halloj"]
-    
     var searchQuery : String = "citron"
+    var animator : UIDynamicAnimator!
+    var gravity : UIGravityBehavior!
+    var collision : UICollisionBehavior!
+    var snap : UISnapBehavior!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NSLog("Hejsan hoppsan jag är nslog")
-        // Do any additional setup after loading the view.
+        apple.center.y = -20
+        apple.center.x = view.center.x
+        
+        animator = UIDynamicAnimator(referenceView: view)
+        
+        gravity = UIGravityBehavior(items: [apple])
+        animator.addBehavior(gravity)
+        
+        collision = UICollisionBehavior(items: [apple, matematik])
+        animator.addBehavior(collision)
+        
+        let snapBack = matematik.center
+        snap = UISnapBehavior(item: matematik, snapTo: snapBack)
+        animator.addBehavior(snap)
     }
     
 
@@ -39,11 +55,8 @@ class MenuViewController: UIViewController {
                 }
                    if let vc = segue.destination as? QueryTableViewController {
                         vc.query = self.searchQuery
-                        if let actualQuery = vc.query {
-                            NSLog("Queryn är %@", actualQuery)
-                        }
                    } else {
-                    NSLog("Viewcontrollern finns inte...")
+                        NSLog("Viewcontrollern finns inte...")
                 }
             default: break
             }
@@ -53,48 +66,5 @@ class MenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
-    func search(query : String) {
-        self.searchResult = []
-        let urlString = "http://matapi.se/foodstuff?query=\(query)"
-        let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        if let url = URL(string: safeUrlString!)
-        {
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) {
-                (data: Data?, response: URLResponse?, error: Error?) in
-                if let actualData = data {
-                    let jsonOptions = JSONSerialization.ReadingOptions()
-                    do {
-                        if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [[String: Any]] {
-                            //let nutrientValuesDictionary = parsed["nutrientValues"] as? [String: Any],
-                            //let calories = nutrientValuesDictionary["energyKcal"] as? Int,
-                            DispatchQueue.main.async {
-                                for dictionary : [String:Any?] in parsed {
-                                    if let foodName = dictionary["name"] as? String {
-                                        
-                                        self.searchResult.append(foodName)
-                                        
-                                    } else {
-                                        NSLog("Failed to find 'nutrientValues' or 'energyKcal' in json object.")
-                                    }
-                                }
-                            }
-                        } else {
-                            NSLog("Failed to cast from Json.")
-                        }
-                    } catch let parseError {
-                        NSLog("Failed to parse Json: \(parseError)")
-                    }
-                } else {
-                    NSLog("No data received.")
-                }
-            }
-            task.resume()
-        } else {
-            NSLog("Failed to create URL.")
-        }
-    }
-    
 
 }

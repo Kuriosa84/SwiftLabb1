@@ -70,17 +70,17 @@
 		472115E01E5347BB0063B853 /* SwiftLabb1 */ = {
 			isa = PBXGroup;
 			children = (
-				472176161E6203110047096D /* FavouritesTableViewController.swift */,
 				472115E11E5347BB0063B853 /* AppDelegate.swift */,
-				472115E31E5347BB0063B853 /* ViewController.swift */,
 				472176081E5C38150047096D /* DemoTableViewController.swift */,
-				4721760A1E5C40BB0047096D /* MyTableViewCell.swift */,
+				472176161E6203110047096D /* FavouritesTableViewController.swift */,
 				472115E51E5347BB0063B853 /* Main.storyboard */,
 				4721760E1E61E5CD0047096D /* MenuViewController.swift */,
 				4721760C1E5C5C780047096D /* MyTableView.swift */,
+				4721760A1E5C40BB0047096D /* MyTableViewCell.swift */,
 				472176121E61FD9A0047096D /* NutritionViewController.swift */,
 				472115F31E534D040063B853 /* OtherViewController.swift */,
 				472176101E61F2AF0047096D /* QueryTableViewController.swift */,
+				472115E31E5347BB0063B853 /* ViewController.swift */,
 				472115E81E5347BB0063B853 /* Assets.xcassets */,
 				472115EA1E5347BB0063B853 /* LaunchScreen.storyboard */,
 				472115ED1E5347BB0063B853 /* Info.plist */,

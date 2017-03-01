@@ -13,21 +13,23 @@ class QueryTableViewController: UITableViewController {
     var query : String?
     
     var searchResult : [(String, Int)] = []
+    var calories : [Int : Int] = [:]
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         definesPresentationContext = true
         if let actualQuery = query {
+            searchBar.text = actualQuery
             search(query: actualQuery)
+            /*
+            for tuppel in searchResult {
+                getCalories(query: tuppel.1)
+            }
+             */
         }
-        
-        
-        //searchController = UISearchController(searchResultsController:nil)
-        //searchController.searchResultsUpdater = self
-        //searchController.dimsBackgroundDuringPresentation = false
-        //tableView.tableHeaderView = searchController.searchBar
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,9 +37,21 @@ class QueryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    @IBAction func onNewSearch(_ sender: UIBarButtonItem) {
+        if let newQuery = searchBar.text {
+            NSLog("Trying to search with query %@", newQuery)
+            search(query: newQuery)
+        } else {
+            NSLog("Search failed...")
+        }
+    }
+    
+    @IBAction func onSearchButton(_ sender: Any) {
+        
+    }
     
     func search(query : String) {
-        //searchResult = []
+        searchResult = []
         let urlString = "http://matapi.se/foodstuff?query=\(query)"
         let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         if let url = URL(string: safeUrlString!)
@@ -49,20 +63,53 @@ class QueryTableViewController: UITableViewController {
                     let jsonOptions = JSONSerialization.ReadingOptions()
                     do {
                         if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [[String: Any]] {
-                             //let nutrientValuesDictionary = parsed["nutrientValues"] as? [String: Any],
-                                //let calories = nutrientValuesDictionary["energyKcal"] as? Int,
                             DispatchQueue.main.async {
                                 for dictionary in parsed {
                                     if let foodName = dictionary["name"] as? String,
-                                        let foodNumber = dictionary["number"] as? Int {
-                                        
+                                        let foodNumber = dictionary["number"] as? Int
+                                        {
                                         self.searchResult.append((foodName,foodNumber))
-                                        
+                                            self.getCalories(query: foodNumber)
                                     } else {
                                         NSLog("Failed to find 'nutrientValues' or 'energyKcal' in json object.")
                                     }
                                 }
                                 self.tableView.reloadData()
+                            }
+                        } else {
+                            NSLog("Failed to cast from Json.")
+                        }
+                    } catch let parseError {
+                        NSLog("Failed to parse Json: \(parseError)")
+                    }
+                } else {
+                    NSLog("No data received.")
+                }
+            }
+            task.resume()
+        } else {
+            NSLog("Failed to create URL.")
+        }
+    }
+    
+    func getCalories(query : Int) {
+        let urlString = "http://matapi.se/foodstuff/\(query)"
+        let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let url = URL(string: safeUrlString!)
+        {
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) {
+                (data: Data?, response: URLResponse?, error: Error?) in
+                if let actualData = data {
+                    let jsonOptions = JSONSerialization.ReadingOptions()
+                    do {
+                        if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [String: Any] {
+                            DispatchQueue.main.async {
+                                if let nutritionDictionary = parsed["nutrientValues"] as? [String : Int],
+                                    let calorieValue = nutritionDictionary["energyKcal"] {
+                                    self.calories[query] = calorieValue
+                                    self.tableView.reloadData()
+                                }
                             }
                         } else {
                             NSLog("Failed to cast from Json.")
@@ -116,9 +163,30 @@ class QueryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
         
         // Configure the cell...
+        /*
+        let rect = CGRect(x: 0, y: 0, width: 200, height: 50)
+        cell.column1 = UILabel(frame: rect)
+        cell.column1.text = "Halloj"
+        cell.backgroundView.addSubview(cell.column1)
+        
+        let rect2 = CGRect(x: 0, y: 200, width: 200, height: 50)
+        cell.column2 = UILabel(frame: rect2)
+        cell.column2.text = "Hej"
+        cell.backgroundView.addSubview(cell.column2)
+        */
+        
+        
         let (foodName, foodNumber) = searchResult[indexPath.row]
-        cell.textLabel?.text = foodName
+        cell.column1.text = foodName
         cell.foodQueryIndex = foodNumber
+        if let calorieValue = calories[foodNumber] {
+            cell.column2.text = "\(calorieValue) kcal"
+        } else {
+            cell.column2.text = "?"
+        }
+        
+        //let calorie = calories[indexPath.row]
+        //cell.column2.text = "\(calorie)"
         /*
         if shouldUseSearchResult {
             cell.textLabel?.text = searchResult[indexPath.row]
@@ -228,16 +296,6 @@ class QueryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 
