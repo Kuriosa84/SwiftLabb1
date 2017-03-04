@@ -13,56 +13,22 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var healthyLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var favouriteButton: UIButton!
     
     let favouritesKey = "favourites"
     var foodQueryIndex : Int = 1
-    var foodName = "banan"
-    var calories = 0
-    var iron : Float = 0
-    var vitaminC : Float = 0
+    var foodName = "blabla"
     var healthValue : Int = 0
-    var nutritionKeys : [String] = []
-    var vitaminKeys : [String] = []
-    var mineralKeys : [String] = []
-    var nutritionValues : [String : (String, Float?, String)] = [:]
-    var vitaminValues : [String : (String, Float?, String)] = [:]
-    var mineralValues : [String : (String, Float?, String)] = [:]
+    var nutrients : Nutrients = Nutrients()
     
     var imagePath : String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory.appending("/\(foodQueryIndex).png")
     }
-    
-    var isInFavourites : Bool {
-        get {
-            let userDefaults = UserDefaults.standard
-            if let favourites = userDefaults.object(forKey: favouritesKey) as? [Int] {
-                return favourites.contains(foodQueryIndex)
-            } else {
-                return false
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nutritionKeys = ["energyKcal", "protein", "fat", "saturatedFattyAcids",
-         "monounsaturatedFattyAcids", "sumPolyunsaturatedFattyAcids", "carbohydrates",
-         "fibres", "cholesterol"]
-        
-        nutritionValues = [
-            nutritionKeys[0] : ("kCal", nil, ""),
-            nutritionKeys[1] : ("Protein", nil, "g"),
-            nutritionKeys[2] : ("Fett", nil, "g"),
-            nutritionKeys[3] : ("varav mättat fett", nil, "g"),
-            nutritionKeys[4] : ("varav enkelomättat fett", nil, "g"),
-            nutritionKeys[5] : ("varav fleromättat fett", nil, "g"),
-            nutritionKeys[6] : ("Kolhydrater", nil, "g"),
-            nutritionKeys[7] : ("Fibrer", nil, "g"),
-            nutritionKeys[8] : ("Kolesterol", nil, "mg")
-        ]
         
         if let image = UIImage(contentsOfFile: imagePath) {
             imageView.image = image
@@ -71,17 +37,18 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
             NSLog("No image was found.")
         }
         
+        let fetcher = FetchValues(foodIndex: foodQueryIndex, tableView: tableView,
+                                  nameLabel: nameLabel, healthyLabel: healthyLabel)
         
-        /*
-        if(isInFavourites) {
-            addToFavouritesButton.setTitle("Ta bort från favoriter", for: UIControlState.normal)
+        self.nutrients = fetcher.nutrients
+        healthyLabel.text = "Nyttighet: \(nutrients.healthValue)"
+        
+        let fav = Favourites()
+        if(fav.isInFavourites(index: foodQueryIndex)) {
+            favouriteButton.setTitle("Ta bort från favoriter ⭐️", for: .normal)
+        } else {
+            favouriteButton.setTitle("Lägg till i favoriter ⭐️", for: .normal)
         }
-        */
-        search(query: foodQueryIndex)
-        
-        
-        
-        
     }
     
     @IBAction func takePhoto(_ sender: Any) {
@@ -126,37 +93,17 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
         picker.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addToFavourites(_ sender: UIButton) {
-        //let userDefaults = UserDefaults.standard
-        
-        
-        
-        //var myFavourites : [(Int, String, Int)]
-        
-        /*
-        if(!isInFavourites) {
-            if let favouritesArray = userDefaults.object(forKey: "favourites") as? [(Int, String, Int)] {
-                myFavourites = favouritesArray
-                myFavourites.append((foodQueryIndex, foodName, calories))
-                userDefaults.set(myFavourites, forKey: "favourites")
-            } else {
-                myFavourites = []
-                userDefaults.set(myFavourites, forKey:"favourites")
-            }
-            userDefaults.synchronize()
-            sender.setTitle("Ta bort från favoriter", for: UIControlState.normal)
+    @IBAction func addOrRemoveFavourite(_ sender: UIButton) {
+        let fav = Favourites()
+        if(fav.isInFavourites(index: foodQueryIndex)) {
+            fav.removeFavourite(foodIndex: foodQueryIndex)
+            favouriteButton.setTitle("Lägg till i favoriter ⭐️", for: .normal)
         } else {
-            if let favouritesArray = userDefaults.object(forKey: "favourites") as? [(Int, String, Int)] {
-                myFavourites = favouritesArray
-                if let actualTupleIndex = getTupleIndex(tupleArray: myFavourites, foodIndex: foodQueryIndex) {
-                    myFavourites.remove(at: actualTupleIndex)
-                }
-                userDefaults.set(myFavourites, forKey: favouritesKey)
-            }
-            sender.setTitle("Lägg till i favoriter", for: UIControlState.normal)
+            fav.addFavourite(foodIndex: foodQueryIndex)
+            favouriteButton.setTitle("Ta bort från favoriter ⭐️", for: .normal)
         }
-         */
     }
+
     
     func getTupleIndex(tupleArray: [(Int, String, Int)], foodIndex: Int) -> (Int?) {
         for (i, tuple) in tupleArray.enumerated() {
@@ -167,67 +114,36 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
         return nil
     }
 
-    func search(query : Int) {
-        //searchResult = []
-        let urlString = "http://matapi.se/foodstuff/\(query)"
-        let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        if let url = URL(string: safeUrlString!)
-        {
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) {
-                (data: Data?, response: URLResponse?, error: Error?) in
-                if let actualData = data {
-                    let jsonOptions = JSONSerialization.ReadingOptions()
-                    do {
-                        if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [String: Any] {
-                            if let nutrientValuesDictionary = parsed["nutrientValues"] as? [String: Any],
-                            let name = parsed["name"] as? String {
-                                DispatchQueue.main.async {
-                                    self.nameLabel.text = name
-                                    
-                                    for key in self.nutritionKeys {
-                                        if let value = nutrientValuesDictionary[key] as? Float {
-                                            self.nutritionValues[key]?.1 = value
-                                        } else {
-                                            NSLog("Could not find nutrient \(key)")
-                                        }
-                                    }
-                                    
-                                    self.tableView.reloadData()
-                                }
-                            }
-                        } else {
-                            NSLog("Failed to cast from Json.")
-                        }
-                    } catch let parseError {
-                        NSLog("Failed to parse Json: \(parseError)")
-                    }
-                } else {
-                    NSLog("No data received.")
-                }
-            }
-            task.resume()
-        } else {
-            NSLog("Failed to create URL.")
-        }
-    }
-    
-    func getHealthValue(iron: Float, vitaminC: Float, kcal: Int) -> Int {
-        return Int( iron * 20 + vitaminC * 2 + 80.0 / Float(kcal) )
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nutritionValues.count
+        if(section == 0) {
+            return nutrients.macroKeys.count
+        } else if(section == 1) {
+            return nutrients.vitaminKeys.count
+        } else {
+            return nutrients.mineralKeys.count
+        }
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "NutritionCell", for: indexPath) as! MyTableViewCell
         
-        let (nutrient, value, unit) = nutritionValues[nutritionKeys[indexPath.row]]!
+        var (nutrient, value, unit) : (String, Float?, String)
+        
+        if(indexPath.section == 0) {
+            (nutrient, value, unit) = nutrients.macroValues[nutrients.macroKeys[indexPath.row]]!
+        } else if(indexPath.section == 1) {
+            (nutrient, value, unit) = nutrients.vitaminValues[nutrients.vitaminKeys[indexPath.row]]!
+        } else {
+            (nutrient, value, unit) = nutrients.mineralValues[nutrients.mineralKeys[indexPath.row]]!
+            
+        }
+        
         cell.column1.text = nutrient
         
         if let actualValue = value {
@@ -238,11 +154,6 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
         
         return cell
     }
-
-    
-    
-
-    
 
     /*
     // MARK: - Navigation

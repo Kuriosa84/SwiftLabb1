@@ -100,9 +100,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="s7l-Tm-2i3">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-t7-D6D">
+                                    <rect key="frame" x="149" y="35" width="116" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Jämför livsmedel"/>
+                                    <connections>
+                                        <segue destination="gQD-BU-QR5" kind="show" id="bnr-9r-gEj"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavouritesCell" id="tF6-XW-jwR">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavouritesCell" id="tF6-XW-jwR" customClass="MyTableViewCell" customModule="SwiftLabb1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF6-XW-jwR" id="6hV-it-0kM">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -122,7 +137,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1t-0Y-aA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067" y="951"/>
+            <point key="canvasLocation" x="1066.6666666666667" y="950.54347826086962"/>
+        </scene>
+        <!--Diagram View Controller-->
+        <scene sceneID="gpZ-la-Mts">
+            <objects>
+                <viewController id="gQD-BU-QR5" customClass="DiagramViewController" customModule="SwiftLabb1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hHK-nA-SDq"/>
+                        <viewControllerLayoutGuide type="bottom" id="hS5-jy-TLt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FLn-mP-IQK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hT-mk-dxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="951"/>
         </scene>
         <!--Query Table View Controller-->
         <scene sceneID="8F8-es-4nk">
@@ -182,7 +215,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="237"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matnamn" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matnamn" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
                                     <rect key="frame" x="0.0" y="21" width="175" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -201,17 +234,20 @@
                                         <action selector="takePhoto:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="H3b-il-FQC"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nyttighetsvärde" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
-                                    <rect key="frame" x="0.0" y="98" width="122" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nyttighetsvärde" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
+                                    <rect key="frame" x="0.0" y="98" width="206" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-WX-CFy">
-                                    <rect key="frame" x="8" y="152" width="160" height="30"/>
+                                    <rect key="frame" x="0.0" y="152" width="206" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Lägg till som favorit ⭐️"/>
+                                    <state key="normal" title="Lägg till i favoriter ⭐️"/>
+                                    <connections>
+                                        <action selector="addOrRemoveFavourite:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="BdJ-Uj-c96"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -232,6 +268,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="favouriteButton" destination="eYI-WX-CFy" id="SCe-Ou-yLp"/>
                         <outlet property="healthyLabel" destination="qYG-qQ-KWi" id="HCG-Se-gwQ"/>
                         <outlet property="imageView" destination="AyL-xM-f7r" id="SNf-nv-vPm"/>
                         <outlet property="nameLabel" destination="VMo-E2-6es" id="zML-Db-2gH"/>

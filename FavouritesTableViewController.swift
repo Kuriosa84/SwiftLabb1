@@ -10,21 +10,12 @@ import UIKit
 
 class FavouritesTableViewController: UITableViewController {
     
-    let favouritesKey = "favourites"
-    
-    var favouriteIndexes : [Int] {
-        get {
-            let userDefaults = UserDefaults.standard
-            if let actualFavourites = userDefaults.object(forKey: favouritesKey) as? [Int] {
-                return actualFavourites
-            } else {
-                return []
-            }
-        }
-    }
+    let favouritesObject = Favourites()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favouritesObject.fetchFavourites(tableView: self.tableView)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,23 +37,18 @@ class FavouritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return favouritesObject.indices.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> MyTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesCell", for: indexPath) as! MyTableViewCell
         
-        let userDefaults = UserDefaults.standard
-        let tupleArray = userDefaults.object(forKey: favouritesKey) as! [(Int, String, Int)]
-        
-
-        // Configure the cell...
-        
-        // Configure the cell...
-        let foodNumber = tupleArray[indexPath.row].0
-        cell.column1.text = tupleArray[indexPath.row].1
-        cell.foodQueryIndex = foodNumber
+        if let favourite = favouritesObject.favourites[indexPath.row] {
+            cell.column1.text = favourite.name
+            cell.column2.text = "\(favourite.calories) kCal"
+            cell.foodQueryIndex = favourite.index
+        }
 
         return cell
     }

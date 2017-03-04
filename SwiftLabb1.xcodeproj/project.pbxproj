@@ -15,14 +15,19 @@
 		472115F41E534D040063B853 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472115F31E534D040063B853 /* OtherViewController.swift */; };
 		472176091E5C38150047096D /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176081E5C38150047096D /* DemoTableViewController.swift */; };
 		4721760B1E5C40BB0047096D /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760A1E5C40BB0047096D /* MyTableViewCell.swift */; };
-		4721760D1E5C5C780047096D /* MyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760C1E5C5C780047096D /* MyTableView.swift */; };
 		4721760F1E61E5CD0047096D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721760E1E61E5CD0047096D /* MenuViewController.swift */; };
 		472176111E61F2AF0047096D /* QueryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176101E61F2AF0047096D /* QueryTableViewController.swift */; };
 		472176131E61FD9A0047096D /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176121E61FD9A0047096D /* NutritionViewController.swift */; };
 		472176171E6203110047096D /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472176161E6203110047096D /* FavouritesTableViewController.swift */; };
+		473C851E1E68520700107403 /* DiagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C851D1E68520700107403 /* DiagramViewController.swift */; };
+		473C85401E685F6D00107403 /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C853F1E685F6D00107403 /* Nutrients.swift */; };
+		473C85421E6868B300107403 /* FetchValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C85411E6868B300107403 /* FetchValues.swift */; };
+		473C85441E6B121500107403 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C85431E6B121500107403 /* Favourites.swift */; };
+		81DC0963F499770F41319EEC /* Pods_SwiftLabb1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9E652CB02AC1F8F0E92811 /* Pods_SwiftLabb1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1861723C5FA65767D79F1FA9 /* Pods-SwiftLabb1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLabb1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLabb1/Pods-SwiftLabb1.debug.xcconfig"; sourceTree = "<group>"; };
 		472115DE1E5347BB0063B853 /* SwiftLabb1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLabb1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		472115E11E5347BB0063B853 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		472115E31E5347BB0063B853 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,11 +38,16 @@
 		472115F31E534D040063B853 /* OtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		472176081E5C38150047096D /* DemoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
 		4721760A1E5C40BB0047096D /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
-		4721760C1E5C5C780047096D /* MyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableView.swift; sourceTree = "<group>"; };
 		4721760E1E61E5CD0047096D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		472176101E61F2AF0047096D /* QueryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTableViewController.swift; sourceTree = "<group>"; };
 		472176121E61FD9A0047096D /* NutritionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionViewController.swift; sourceTree = "<group>"; };
 		472176161E6203110047096D /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesTableViewController.swift; path = ../FavouritesTableViewController.swift; sourceTree = "<group>"; };
+		473C851D1E68520700107403 /* DiagramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagramViewController.swift; sourceTree = "<group>"; };
+		473C853F1E685F6D00107403 /* Nutrients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
+		473C85411E6868B300107403 /* FetchValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchValues.swift; sourceTree = "<group>"; };
+		473C85431E6B121500107403 /* Favourites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
+		C3529E6B09DE4A476CCAB5CF /* Pods-SwiftLabb1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLabb1.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLabb1/Pods-SwiftLabb1.release.xcconfig"; sourceTree = "<group>"; };
+		DF9E652CB02AC1F8F0E92811 /* Pods_SwiftLabb1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLabb1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DC0963F499770F41319EEC /* Pods_SwiftLabb1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4687706BD0D9DAB72C34F241 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1861723C5FA65767D79F1FA9 /* Pods-SwiftLabb1.debug.xcconfig */,
+				C3529E6B09DE4A476CCAB5CF /* Pods-SwiftLabb1.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		472115D51E5347BB0063B853 = {
 			isa = PBXGroup;
 			children = (
 				472115E01E5347BB0063B853 /* SwiftLabb1 */,
 				472115DF1E5347BB0063B853 /* Products */,
+				4687706BD0D9DAB72C34F241 /* Pods */,
+				6945713AC334870BFA62AB13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,12 +94,15 @@
 			children = (
 				472115E11E5347BB0063B853 /* AppDelegate.swift */,
 				472176081E5C38150047096D /* DemoTableViewController.swift */,
+				473C851D1E68520700107403 /* DiagramViewController.swift */,
+				473C85411E6868B300107403 /* FetchValues.swift */,
+				473C85431E6B121500107403 /* Favourites.swift */,
 				472176161E6203110047096D /* FavouritesTableViewController.swift */,
 				472115E51E5347BB0063B853 /* Main.storyboard */,
 				4721760E1E61E5CD0047096D /* MenuViewController.swift */,
-				4721760C1E5C5C780047096D /* MyTableView.swift */,
 				4721760A1E5C40BB0047096D /* MyTableViewCell.swift */,
 				472176121E61FD9A0047096D /* NutritionViewController.swift */,
+				473C853F1E685F6D00107403 /* Nutrients.swift */,
 				472115F31E534D040063B853 /* OtherViewController.swift */,
 				472176101E61F2AF0047096D /* QueryTableViewController.swift */,
 				472115E31E5347BB0063B853 /* ViewController.swift */,
@@ -88,6 +113,14 @@
 			path = SwiftLabb1;
 			sourceTree = "<group>";
 		};
+		6945713AC334870BFA62AB13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF9E652CB02AC1F8F0E92811 /* Pods_SwiftLabb1.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,9 +128,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 472115F01E5347BB0063B853 /* Build configuration list for PBXNativeTarget "SwiftLabb1" */;
 			buildPhases = (
+				A5B15B07EA7B35A9EA52588A /* [CP] Check Pods Manifest.lock */,
 				472115DA1E5347BB0063B853 /* Sources */,
 				472115DB1E5347BB0063B853 /* Frameworks */,
 				472115DC1E5347BB0063B853 /* Resources */,
+				74F868186CFE7B5C668DF6FD /* [CP] Embed Pods Frameworks */,
+				57C432FCAED60B091CC16E69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +191,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		57C432FCAED60B091CC16E69 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftLabb1/Pods-SwiftLabb1-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74F868186CFE7B5C668DF6FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftLabb1/Pods-SwiftLabb1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5B15B07EA7B35A9EA52588A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		472115DA1E5347BB0063B853 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -164,12 +248,15 @@
 				472176171E6203110047096D /* FavouritesTableViewController.swift in Sources */,
 				472115E41E5347BB0063B853 /* ViewController.swift in Sources */,
 				472115F41E534D040063B853 /* OtherViewController.swift in Sources */,
+				473C85401E685F6D00107403 /* Nutrients.swift in Sources */,
+				473C85441E6B121500107403 /* Favourites.swift in Sources */,
 				472176131E61FD9A0047096D /* NutritionViewController.swift in Sources */,
 				4721760F1E61E5CD0047096D /* MenuViewController.swift in Sources */,
-				4721760D1E5C5C780047096D /* MyTableView.swift in Sources */,
 				4721760B1E5C40BB0047096D /* MyTableViewCell.swift in Sources */,
 				472176111E61F2AF0047096D /* QueryTableViewController.swift in Sources */,
 				472115E21E5347BB0063B853 /* AppDelegate.swift in Sources */,
+				473C85421E6868B300107403 /* FetchValues.swift in Sources */,
+				473C851E1E68520700107403 /* DiagramViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +375,7 @@
 		};
 		472115F11E5347BB0063B853 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1861723C5FA65767D79F1FA9 /* Pods-SwiftLabb1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftLabb1/Info.plist;
@@ -300,6 +388,7 @@
 		};
 		472115F21E5347BB0063B853 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3529E6B09DE4A476CCAB5CF /* Pods-SwiftLabb1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftLabb1/Info.plist;
