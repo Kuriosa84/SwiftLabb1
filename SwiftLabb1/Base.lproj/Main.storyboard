@@ -258,8 +258,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="237"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Matnamn" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
-                                    <rect key="frame" x="0.0" y="8" width="206" height="107"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matnamn" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
+                                    <rect key="frame" x="0.0" y="19.999999999999996" width="101" height="28.666666666666661"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -271,21 +271,21 @@
                                         <constraint firstAttribute="width" constant="200" id="eIB-wn-TJa"/>
                                     </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db5-ES-iip">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db5-ES-iip">
                                     <rect key="frame" x="291" y="207" width="46" height="30"/>
                                     <state key="normal" title="Ta bild"/>
                                     <connections>
                                         <action selector="takePhoto:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="H3b-il-FQC"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nyttighetsvärde" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
-                                    <rect key="frame" x="0.0" y="123" width="206" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nyttighetsvärde" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
+                                    <rect key="frame" x="0.0" y="48.666666666666671" width="122" height="21.000000000000014"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-WX-CFy">
-                                    <rect key="frame" x="0.0" y="178" width="206" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-WX-CFy">
+                                    <rect key="frame" x="0.0" y="77.666666666666671" width="148" height="30"/>
                                     <state key="normal" title="Lägg till i favoriter ⭐️"/>
                                     <connections>
                                         <action selector="addOrRemoveFavourite:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="BdJ-Uj-c96"/>
@@ -299,6 +299,7 @@
                                 <constraint firstItem="VMo-E2-6es" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="J8c-g9-wCJ"/>
                                 <constraint firstItem="AyL-xM-f7r" firstAttribute="top" secondItem="5Dm-wg-GUG" secondAttribute="top" id="NZe-dd-5Nk"/>
                                 <constraint firstItem="eYI-WX-CFy" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="NeM-wj-xTW"/>
+                                <constraint firstItem="db5-ES-iip" firstAttribute="centerX" secondItem="AyL-xM-f7r" secondAttribute="centerX" id="jNW-Fe-1Hk"/>
                                 <constraint firstItem="qYG-qQ-KWi" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="otF-y9-MeZ"/>
                                 <constraint firstItem="db5-ES-iip" firstAttribute="top" secondItem="AyL-xM-f7r" secondAttribute="bottom" constant="7" id="p1h-E7-bRO"/>
                                 <constraint firstAttribute="trailing" secondItem="AyL-xM-f7r" secondAttribute="trailing" id="swU-kL-UpJ"/>

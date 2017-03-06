@@ -37,9 +37,9 @@ class Nutrients {
             macroKeys[0] : ("kCal", nil, ""),
             macroKeys[1] : ("Protein", nil, "g"),
             macroKeys[2] : ("Fett", nil, "g"),
-            macroKeys[3] : ("varav mättat fett", nil, "g"),
-            macroKeys[4] : ("varav enkelomättat fett", nil, "g"),
-            macroKeys[5] : ("varav fleromättat fett", nil, "g"),
+            macroKeys[3] : ("Mättat fett", nil, "g"),
+            macroKeys[4] : ("Enkelomättat fett", nil, "g"),
+            macroKeys[5] : ("Fleromättat fett", nil, "g"),
             macroKeys[6] : ("Kolhydrater", nil, "g"),
             macroKeys[7] : ("Fibrer", nil, "g"),
             macroKeys[8] : ("Kolesterol", nil, "mg")

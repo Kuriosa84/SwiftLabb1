@@ -42,7 +42,11 @@ class DiagramViewController: UIViewController, GKBarGraphDataSource {
         self.nutrients1 = fetcher1.nutrients
         self.nutrients2 = fetcher2.nutrients
         
-        self.labels = (self.nutrients1?.macroKeys)!
+        for key in (self.nutrients1?.macroKeys)! {
+            if let value = self.nutrients1?.macroValues[key] {
+                self.labels.append(value.0)
+            }
+        }
         
         //20 är ett magiskt tal. Alohomora!
         graphView!.barWidth = (self.view.frame.width - 20) / (2*CGFloat(labels.count))

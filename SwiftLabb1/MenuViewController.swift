@@ -38,6 +38,12 @@ class MenuViewController: UIViewController {
         let snapBack = matematik.center
         snap = UISnapBehavior(item: matematik, snapTo: snapBack)
         animator.addBehavior(snap)
+        
+        UIView.beginAnimations("Change colour", context: nil)
+        UIView.setAnimationDuration(6)
+        UIView.setAnimationDelay(2)
+        view.backgroundColor = UIColor.green
+        UIView.commitAnimations()
     }
     
     // MARK: - Navigation
