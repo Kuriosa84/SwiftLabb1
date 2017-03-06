@@ -10,43 +10,81 @@ import UIKit
 import GraphKit
 
 class DiagramViewController: UIViewController, GKBarGraphDataSource {
+    
+    var foodIndex1 : Int = 1
+    var foodIndex2 : Int = 2
+    var foodName1 : String = ""
+    var foodName2 : String = ""
+    var graphView : GKBarGraph?
+    var nutrients1 : Nutrients?
+    var nutrients2 : Nutrients?
+    var labels : [String] = []
 
+    @IBOutlet weak var foodLabel1: UILabel!
+    @IBOutlet weak var foodLabel2: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let graphFrame : CGRect = CGRect(x: 100, y: 100, width: 200, height: 200)
-        let graphView = GKBarGraph(frame: graphFrame)
+        foodLabel1.text = foodName1
+        foodLabel1.textColor = UIColor.blue
+        foodLabel2.text = foodName2
+        foodLabel2.textColor = UIColor.red
         
+        let screenWidth = self.view.frame.size.width
+        let screenHeight = self.view.frame.size.height
+        let graphFrame : CGRect = CGRect(x: 0, y: screenHeight/3, width: screenWidth, height: screenHeight/3)
+        graphView = GKBarGraph(frame: graphFrame)
         
-        //self.data = [65, 10, 40, 90, 50, 75]
-        //self.labels = ["US", "UK", "DE", "PL", "CN", "JP"];
-        /*
-         graphView.barWidth = 22;
-         graphView.barHeight = 140;
-         graphView.marginBar = 25;
-         graphView.animationDuration = 2.0;
-         */
-        graphView.dataSource = self;
-        view.addSubview(graphView)
+        let fetcher1 = FetchValues(foodIndex: foodIndex1, tableView: nil, nameLabel: nil, healthyLabel: nil, graphView: graphView)
+        let fetcher2 = FetchValues(foodIndex: foodIndex2, tableView: nil, nameLabel: nil, healthyLabel: nil, graphView: graphView)
         
-        graphView.draw()
+        self.nutrients1 = fetcher1.nutrients
+        self.nutrients2 = fetcher2.nutrients
+        
+        self.labels = (self.nutrients1?.macroKeys)!
+        
+        //20 är ett magiskt tal. Alohomora!
+        graphView!.barWidth = (self.view.frame.width - 20) / (2*CGFloat(labels.count))
+        graphView!.marginBar = 0
+        graphView!.dataSource = self
+        view.addSubview(graphView!)
+        
+        graphView!.draw()
     }
     
     func numberOfBars() -> Int {
-        return 6
+        return 2 * nutrients1!.macroKeys.count
     }
     
     func valueForBar(at index: Int) -> NSNumber! {
-        return NSNumber(integerLiteral: (10*index))
+        var data : [Double] = Array(repeating: 0, count: 2 * nutrients1!.macroKeys.count)
+        var i : Int = 0
+        var j : Int = 0
+        while i < data.count {
+            if let value1 = nutrients1?.macroValues[(nutrients1?.macroKeys[j])!]?.1 {
+                data[i] = Double(value1)
+            } else {
+                data[i] = 0
+            }
+            i += 1
+            if let value2 = nutrients2?.macroValues[(nutrients2?.macroKeys[j])!]?.1 {
+                data[i] = Double(value2)
+            } else {
+                data[i] = 0
+            }
+            i += 1
+            j += 1
+        }
+        
+        return NSNumber(floatLiteral: data[index])
     }
     
     func titleForBar(at index: Int) -> String! {
-        if(index == 0) {
-            return "A-vitamin"
-        } else if(index == 1) {
-            return "Vitamin B1"
+        if(index % 2 == 0) {
+            return self.labels[index / 2]
         } else {
-            return "hej"
+            return ""
         }
     }
     

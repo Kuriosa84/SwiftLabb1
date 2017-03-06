@@ -8,19 +8,31 @@
 
 import Foundation
 import UIKit
+import GraphKit
 
 class FetchValues {
     
     var nutrients : Nutrients
-    let tableView : UITableView
-    var nameLabel : UILabel
-    let healthyLabel : UILabel
+    let tableView : UITableView?
+    var nameLabel : UILabel?
+    let healthyLabel : UILabel?
+    let graphView : GKBarGraph?
     
-    init(foodIndex: Int, tableView: UITableView, nameLabel: UILabel, healthyLabel: UILabel) {
-        nutrients = Nutrients()
+    init(foodIndex: Int, tableView: UITableView?, nameLabel: UILabel?, healthyLabel: UILabel?, graphView: GKBarGraph?) {
+        nutrients = Nutrients(name: "")
         self.tableView = tableView
         self.nameLabel = nameLabel
         self.healthyLabel = healthyLabel
+        self.graphView = graphView
+        fetch(foodIndex: foodIndex)
+    }
+    
+    init(foodIndex: Int) {
+        nutrients = Nutrients(name: "")
+        tableView = nil
+        nameLabel = nil
+        healthyLabel = nil
+        graphView = nil
         fetch(foodIndex: foodIndex)
     }
     
@@ -40,11 +52,12 @@ class FetchValues {
                                 let name = parsed["name"] as? String {
                                 
                                 DispatchQueue.main.async {
-                                    self.nameLabel.text = name
+                                    self.nameLabel?.text = name
                                     for key in self.nutrients.macroKeys {
                                         if let value = nutrientValuesDictionary[key] as? Float {
                                             self.nutrients.macroValues[key]?.1 = value
-                                            self.tableView.reloadData()
+                                            self.tableView?.reloadData()
+                                            self.graphView?.draw()
                                         } else {
                                             NSLog("Could not find nutrient \(key)")
                                         }
@@ -53,7 +66,8 @@ class FetchValues {
                                     for key in self.nutrients.vitaminKeys {
                                         if let value = nutrientValuesDictionary[key] as? Float {
                                             self.nutrients.vitaminValues[key]?.1 = value
-                                            self.tableView.reloadData()
+                                            self.tableView?.reloadData()
+                                            self.graphView?.draw()
                                         } else {
                                             NSLog("Could not find vitamin \(key)")
                                         }
@@ -62,12 +76,14 @@ class FetchValues {
                                     for key in self.nutrients.mineralKeys {
                                         if let value = nutrientValuesDictionary[key] as? Float {
                                             self.nutrients.mineralValues[key]?.1 = value
-                                            self.tableView.reloadData()
+                                            self.tableView?.reloadData()
+                                            self.graphView?.draw()
                                         } else {
                                             NSLog("Could not find mineral \(key)")
                                         }
                                     }
-                                    self.healthyLabel.text = "Nyttighet: \(self.nutrients.healthValue)"
+                                    self.healthyLabel?.text = "Nyttighet: \(self.nutrients.healthValue)"
+                                    
                                 }
                             }
                         } else {

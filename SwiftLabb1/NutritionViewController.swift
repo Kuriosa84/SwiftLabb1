@@ -19,7 +19,7 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
     var foodQueryIndex : Int = 1
     var foodName = "blabla"
     var healthValue : Int = 0
-    var nutrients : Nutrients = Nutrients()
+    var nutrients : Nutrients = Nutrients(name: nil)
     
     var imagePath : String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -38,7 +38,7 @@ class NutritionViewController: UITableViewController, UIImagePickerControllerDel
         }
         
         let fetcher = FetchValues(foodIndex: foodQueryIndex, tableView: tableView,
-                                  nameLabel: nameLabel, healthyLabel: healthyLabel)
+                                  nameLabel: nameLabel, healthyLabel: healthyLabel, graphView: nil)
         
         self.nutrients = fetcher.nutrients
         healthyLabel.text = "Nyttighet: \(nutrients.healthValue)"

@@ -14,8 +14,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var apple: UILabel!
     @IBOutlet weak var matematik: UILabel!
     
-    var searchResult : [String] = ["Tjo", "Halloj"]
-    var searchQuery : String = "citron"
+    var searchResult : [String] = []
+    var searchQuery : String = ""
     var animator : UIDynamicAnimator!
     var gravity : UIGravityBehavior!
     var collision : UICollisionBehavior!

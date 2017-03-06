@@ -23,6 +23,9 @@
 		473C85401E685F6D00107403 /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C853F1E685F6D00107403 /* Nutrients.swift */; };
 		473C85421E6868B300107403 /* FetchValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C85411E6868B300107403 /* FetchValues.swift */; };
 		473C85441E6B121500107403 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C85431E6B121500107403 /* Favourites.swift */; };
+		473C85461E6C602000107403 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C85451E6C602000107403 /* Checkbox.swift */; };
+		473C854A1E6C6FCA00107403 /* checkbox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 473C85481E6C6FCA00107403 /* checkbox_checked.png */; };
+		473C854B1E6C6FCA00107403 /* checkbox_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 473C85491E6C6FCA00107403 /* checkbox_unchecked.png */; };
 		81DC0963F499770F41319EEC /* Pods_SwiftLabb1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9E652CB02AC1F8F0E92811 /* Pods_SwiftLabb1.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +49,9 @@
 		473C853F1E685F6D00107403 /* Nutrients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
 		473C85411E6868B300107403 /* FetchValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchValues.swift; sourceTree = "<group>"; };
 		473C85431E6B121500107403 /* Favourites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
+		473C85451E6C602000107403 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		473C85481E6C6FCA00107403 /* checkbox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_checked.png; sourceTree = "<group>"; };
+		473C85491E6C6FCA00107403 /* checkbox_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_unchecked.png; sourceTree = "<group>"; };
 		C3529E6B09DE4A476CCAB5CF /* Pods-SwiftLabb1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLabb1.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLabb1/Pods-SwiftLabb1.release.xcconfig"; sourceTree = "<group>"; };
 		DF9E652CB02AC1F8F0E92811 /* Pods_SwiftLabb1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLabb1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +80,7 @@
 		472115D51E5347BB0063B853 = {
 			isa = PBXGroup;
 			children = (
+				473C85471E6C6F7E00107403 /* Images */,
 				472115E01E5347BB0063B853 /* SwiftLabb1 */,
 				472115DF1E5347BB0063B853 /* Products */,
 				4687706BD0D9DAB72C34F241 /* Pods */,
@@ -93,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				472115E11E5347BB0063B853 /* AppDelegate.swift */,
+				473C85451E6C602000107403 /* Checkbox.swift */,
 				472176081E5C38150047096D /* DemoTableViewController.swift */,
 				473C851D1E68520700107403 /* DiagramViewController.swift */,
 				473C85411E6868B300107403 /* FetchValues.swift */,
@@ -111,6 +119,15 @@
 				472115ED1E5347BB0063B853 /* Info.plist */,
 			);
 			path = SwiftLabb1;
+			sourceTree = "<group>";
+		};
+		473C85471E6C6F7E00107403 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				473C85481E6C6FCA00107403 /* checkbox_checked.png */,
+				473C85491E6C6FCA00107403 /* checkbox_unchecked.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		6945713AC334870BFA62AB13 /* Frameworks */ = {
@@ -183,8 +200,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473C854A1E6C6FCA00107403 /* checkbox_checked.png in Resources */,
 				472115EC1E5347BB0063B853 /* LaunchScreen.storyboard in Resources */,
 				472115E91E5347BB0063B853 /* Assets.xcassets in Resources */,
+				473C854B1E6C6FCA00107403 /* checkbox_unchecked.png in Resources */,
 				472115E71E5347BB0063B853 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +267,7 @@
 				472176171E6203110047096D /* FavouritesTableViewController.swift in Sources */,
 				472115E41E5347BB0063B853 /* ViewController.swift in Sources */,
 				472115F41E534D040063B853 /* OtherViewController.swift in Sources */,
+				473C85461E6C602000107403 /* Checkbox.swift in Sources */,
 				473C85401E685F6D00107403 /* Nutrients.swift in Sources */,
 				473C85441E6B121500107403 /* Favourites.swift in Sources */,
 				472176131E61FD9A0047096D /* NutritionViewController.swift in Sources */,

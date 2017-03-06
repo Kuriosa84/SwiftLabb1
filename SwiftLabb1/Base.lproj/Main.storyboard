@@ -35,7 +35,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Favoriter ⭐️"/>
                                 <connections>
-                                    <segue destination="IoD-Ru-Kan" kind="show" identifier="FavouritesSegue" id="uMM-ju-ypI"/>
+                                    <segue destination="IoD-Ru-Kan" kind="show" identifier="FavouritesSegue" id="UJ7-2g-4zT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sök i Livsmedelsverkets databas över näringsvärden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gt-7k-m2b">
@@ -104,12 +104,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-t7-D6D">
-                                    <rect key="frame" x="149" y="35" width="116" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-t7-D6D">
+                                    <rect key="frame" x="113" y="35" width="210" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Jämför livsmedel"/>
+                                    <state key="normal" title="Välj två livsmedel att jämföra"/>
                                     <connections>
-                                        <segue destination="gQD-BU-QR5" kind="show" id="bnr-9r-gEj"/>
+                                        <segue destination="gQD-BU-QR5" kind="show" identifier="CompareSegue" id="bnr-9r-gEj"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -120,10 +120,22 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF6-XW-jwR" id="6hV-it-0kM">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pis-Ds-ZCx">
+                                            <rect key="frame" x="374" y="5" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="checkbox_unchecked.png"/>
+                                            <connections>
+                                                <action selector="onSelectCheckbox:" destination="tF6-XW-jwR" eventType="touchUpInside" id="ONm-Pw-UY0"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="checkbox" destination="pis-Ds-ZCx" id="1XS-co-AtV"/>
                                     <segue destination="MP3-Ge-6yR" kind="show" id="thy-VD-yj5"/>
                                 </connections>
                             </tableViewCell>
@@ -134,6 +146,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="8xZ-UM-IRN"/>
+                    <connections>
+                        <outlet property="compareButton" destination="Lcn-t7-D6D" id="uao-cl-ROZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1t-0Y-aA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,12 +165,40 @@
                     <view key="view" contentMode="scaleToFill" id="FLn-mP-IQK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matnamn 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTG-of-f74">
+                                <rect key="frame" x="0.0" y="101" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matnamn 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t62-O4-K2o">
+                                <rect key="frame" x="0.0" y="72" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t62-O4-K2o" firstAttribute="leading" secondItem="FLn-mP-IQK" secondAttribute="leading" id="0f6-5t-HFd"/>
+                            <constraint firstItem="QTG-of-f74" firstAttribute="leading" secondItem="FLn-mP-IQK" secondAttribute="leading" id="79b-qN-9aw"/>
+                            <constraint firstAttribute="trailing" secondItem="t62-O4-K2o" secondAttribute="trailing" id="C0G-RR-E7X"/>
+                            <constraint firstItem="t62-O4-K2o" firstAttribute="centerX" secondItem="FLn-mP-IQK" secondAttribute="centerX" id="GLx-Rm-5hF"/>
+                            <constraint firstItem="QTG-of-f74" firstAttribute="top" secondItem="t62-O4-K2o" secondAttribute="bottom" constant="8" symbolic="YES" id="ZPz-C0-s3V"/>
+                            <constraint firstItem="QTG-of-f74" firstAttribute="centerX" secondItem="FLn-mP-IQK" secondAttribute="centerX" id="dXs-eu-iV5"/>
+                            <constraint firstItem="t62-O4-K2o" firstAttribute="top" secondItem="hHK-nA-SDq" secondAttribute="bottom" constant="8" symbolic="YES" id="n7d-tP-aCp"/>
+                            <constraint firstAttribute="trailing" secondItem="QTG-of-f74" secondAttribute="trailing" id="qim-cS-ndc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foodLabel1" destination="t62-O4-K2o" id="q1k-mQ-2v5"/>
+                        <outlet property="foodLabel2" destination="QTG-of-f74" id="M7a-98-WOT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hT-mk-dxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="951"/>
+            <point key="canvasLocation" x="2075.36231884058" y="950.54347826086962"/>
         </scene>
         <!--Query Table View Controller-->
         <scene sceneID="8F8-es-4nk">
@@ -215,35 +258,34 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="237"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matnamn" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
-                                    <rect key="frame" x="0.0" y="21" width="175" height="42"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Matnamn" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMo-E2-6es">
+                                    <rect key="frame" x="0.0" y="8" width="206" height="107"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyL-xM-f7r">
-                                    <rect key="frame" x="214" y="8" width="200" height="200"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AyL-xM-f7r">
+                                    <rect key="frame" x="214" y="0.0" width="200" height="200"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="381-k0-dft"/>
+                                        <constraint firstAttribute="width" constant="200" id="eIB-wn-TJa"/>
+                                    </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db5-ES-iip">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db5-ES-iip">
                                     <rect key="frame" x="291" y="207" width="46" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Ta bild"/>
                                     <connections>
                                         <action selector="takePhoto:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="H3b-il-FQC"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nyttighetsvärde" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
-                                    <rect key="frame" x="0.0" y="98" width="206" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nyttighetsvärde" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-qQ-KWi">
+                                    <rect key="frame" x="0.0" y="123" width="206" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-WX-CFy">
-                                    <rect key="frame" x="0.0" y="152" width="206" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYI-WX-CFy">
+                                    <rect key="frame" x="0.0" y="178" width="206" height="30"/>
                                     <state key="normal" title="Lägg till i favoriter ⭐️"/>
                                     <connections>
                                         <action selector="addOrRemoveFavourite:" destination="MP3-Ge-6yR" eventType="touchUpInside" id="BdJ-Uj-c96"/>
@@ -251,6 +293,17 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="eYI-WX-CFy" firstAttribute="top" secondItem="qYG-qQ-KWi" secondAttribute="bottom" constant="8" symbolic="YES" id="23k-Wb-NXP"/>
+                                <constraint firstItem="qYG-qQ-KWi" firstAttribute="top" secondItem="VMo-E2-6es" secondAttribute="bottom" id="7EC-cV-EVA"/>
+                                <constraint firstItem="VMo-E2-6es" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="J8c-g9-wCJ"/>
+                                <constraint firstItem="AyL-xM-f7r" firstAttribute="top" secondItem="5Dm-wg-GUG" secondAttribute="top" id="NZe-dd-5Nk"/>
+                                <constraint firstItem="eYI-WX-CFy" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="NeM-wj-xTW"/>
+                                <constraint firstItem="qYG-qQ-KWi" firstAttribute="leading" secondItem="5Dm-wg-GUG" secondAttribute="leading" id="otF-y9-MeZ"/>
+                                <constraint firstItem="db5-ES-iip" firstAttribute="top" secondItem="AyL-xM-f7r" secondAttribute="bottom" constant="7" id="p1h-E7-bRO"/>
+                                <constraint firstAttribute="trailing" secondItem="AyL-xM-f7r" secondAttribute="trailing" id="swU-kL-UpJ"/>
+                                <constraint firstItem="VMo-E2-6es" firstAttribute="top" secondItem="5Dm-wg-GUG" secondAttribute="top" constant="20" symbolic="YES" id="vuF-tl-Dvw"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NutritionCell" id="oft-MX-8VK" customClass="MyTableViewCell" customModule="SwiftLabb1" customModuleProvider="target">
@@ -295,6 +348,9 @@
             <point key="canvasLocation" x="-28" y="192"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkbox_unchecked.png" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="thy-VD-yj5"/>
     </inferredMetricsTieBreakers>

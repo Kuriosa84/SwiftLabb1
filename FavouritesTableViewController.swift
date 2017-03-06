@@ -11,6 +11,15 @@ import UIKit
 class FavouritesTableViewController: UITableViewController {
     
     let favouritesObject = Favourites()
+    //var favourites : [(index: Int, name: String, calories: Float)?]?
+    public static var nrOfSelections : Int = 0
+    var selectedFoodIndex1 : Int = 1
+    var selectedFoodIndex2 : Int = 2
+    var selectedFoodName1 : String = "Citron"
+    var selectedFoodName2 : String = "Banan"
+    
+    
+    @IBOutlet weak var compareButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +29,16 @@ class FavouritesTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    public func enableCompareButton() {
+        compareButton.setTitle("Jämför livsmedel", for: .normal)
+        compareButton.isEnabled = true
+    }
+    
+    public func disableCompareButton() {
+        compareButton.setTitle("Välj två livsmedel att jämföra", for: .normal)
+        compareButton.isEnabled = false
     }
 
     // MARK: - Table view data source
@@ -37,12 +49,14 @@ class FavouritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return favouritesObject.indices.count
+        return favouritesObject.favourites.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> MyTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesCell", for: indexPath) as! MyTableViewCell
+        
+        cell.viewController = self
         
         if let favourite = favouritesObject.favourites[indexPath.row] {
             cell.column1.text = favourite.name
@@ -100,6 +114,15 @@ class FavouritesTableViewController: UITableViewController {
                 if let actualfoodQueryIndex = cell.foodQueryIndex {
                     vc.foodQueryIndex = actualfoodQueryIndex
                 }
+            }
+        }
+        
+        if segue.identifier == "CompareSegue" {
+            if let vc = segue.destination as? DiagramViewController {
+                vc.foodIndex1 = selectedFoodIndex1
+                vc.foodIndex2 = selectedFoodIndex2
+                vc.foodName1 = selectedFoodName1
+                vc.foodName2 = selectedFoodName2
             }
         }
         // Get the new view controller using segue.destinationViewController.

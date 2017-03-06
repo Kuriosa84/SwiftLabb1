@@ -10,12 +10,11 @@ import Foundation
 
 class Nutrients {
     
+    var name : String?
     let macroKeys, vitaminKeys, mineralKeys : [String]
     var macroValues, vitaminValues, mineralValues : [String : (String, Float?, String)]
-    
     var healthValue : Float {
         get {
-            
             let vitaminValue = vitaminValues.map({(key, value) in value.1}).flatMap({$0}).reduce(0, {$0 + $1})
             let mineralValue = mineralValues.map({(key, value) in value.1}).flatMap({$0}).reduce(0, {$0 + $1})
             var result = vitaminValue + mineralValue
@@ -26,8 +25,10 @@ class Nutrients {
         }
     }
     
-    init() {
+    init(name: String?) {
     
+        self.name = name
+        
         macroKeys = ["energyKcal", "protein", "fat", "saturatedFattyAcids",
                      "monounsaturatedFattyAcids", "sumPolyunsaturatedFattyAcids", "carbohydrates",
                      "fibres", "cholesterol"]
@@ -43,9 +44,7 @@ class Nutrients {
             macroKeys[7] : ("Fibrer", nil, "g"),
             macroKeys[8] : ("Kolesterol", nil, "mg")
         ]
-        /*
- "retinolEquivalents":49,"retinol":0,"betacarotene":590,"vitaminD":0,"vitaminE":0.2,"thiamine":0.05,"riboflavin":0.03,"vitaminC":8,"niacin":0.7,"niacinEquivalents":0.8,"vitaminB6":0.11,"vitaminB12":0,
- */
+
         vitaminKeys = ["retinolEquivalents", "thiamine", "riboflavin", "niacin", "folate", "vitaminB6", "vitaminB12", "vitaminC", "vitaminD", "vitaminE"]
         
         vitaminValues = [

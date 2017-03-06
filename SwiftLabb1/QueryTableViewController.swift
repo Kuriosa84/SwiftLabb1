@@ -11,7 +11,6 @@ import UIKit
 class QueryTableViewController: UITableViewController {
     
     var query : String?
-    
     var searchResult : [(String, Int)] = []
     var calories : [Int : Int] = [:]
     
@@ -24,11 +23,6 @@ class QueryTableViewController: UITableViewController {
         if let actualQuery = query {
             searchBar.text = actualQuery
             search(query: actualQuery)
-            /*
-            for tuppel in searchResult {
-                getCalories(query: tuppel.1)
-            }
-             */
         }
         
         // Uncomment the following line to preserve selection between presentations
@@ -44,10 +38,6 @@ class QueryTableViewController: UITableViewController {
         } else {
             NSLog("Search failed...")
         }
-    }
-    
-    @IBAction func onSearchButton(_ sender: Any) {
-        
     }
     
     func search(query : String) {
@@ -126,7 +116,7 @@ class QueryTableViewController: UITableViewController {
             NSLog("Failed to create URL.")
         }
     }
-    
+    /*
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text?.lowercased() {
             search(query: searchText)
@@ -135,18 +125,7 @@ class QueryTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-    
-    var shouldUseSearchResult : Bool {
-        /*
-        if let searchText = searchController.searchBar.text {
-            if searchText.isEmpty {
-                return false
-            }
-        }
-        return searchController.isActive
- */
-        return true
-    }
+    */
     
     // MARK: - Table view data source
     
@@ -158,24 +137,8 @@ class QueryTableViewController: UITableViewController {
         return searchResult.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
-        
-        // Configure the cell...
-        /*
-        let rect = CGRect(x: 0, y: 0, width: 200, height: 50)
-        cell.column1 = UILabel(frame: rect)
-        cell.column1.text = "Halloj"
-        cell.backgroundView.addSubview(cell.column1)
-        
-        let rect2 = CGRect(x: 0, y: 200, width: 200, height: 50)
-        cell.column2 = UILabel(frame: rect2)
-        cell.column2.text = "Hej"
-        cell.backgroundView.addSubview(cell.column2)
-        */
-        
-        
         let (foodName, foodNumber) = searchResult[indexPath.row]
         cell.column1.text = foodName
         cell.foodQueryIndex = foodNumber
@@ -184,19 +147,6 @@ class QueryTableViewController: UITableViewController {
         } else {
             cell.column2.text = "?"
         }
-        
-        //let calorie = calories[indexPath.row]
-        //cell.column2.text = "\(calorie)"
-        /*
-        if shouldUseSearchResult {
-            cell.textLabel?.text = searchResult[indexPath.row]
-            //cell.foodQueryIndex = searchResult[indexPath.row]
-            //cell.fruit är intern data, cell.textLabel.text det som visas i GUIt
-        } else {
-            cell.textLabel?.text = data[indexPath.row]
-            //cell.foodQueryIndex = data[indexPath.row]
-        }
-         */
         return cell
     }
     

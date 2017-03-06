@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 
+//Favourites are stored in UserDefaults
+
 class Favourites {
     
     let favouritesKey = "favouritesKey"
-
+    
     var favourites : [(index: Int, name: String, calories: Float)?] = []
     
     var indices : [Int] {
@@ -30,7 +32,7 @@ class Favourites {
         
     }
     
-    func fetchFavourites(tableView: UITableView) {
+    func fetchFavourites(tableView: UITableView?) {
         favourites = Array(repeating: nil, count: indices.count)
         for (i, foodIndex) in indices.enumerated() {
             let urlString = "http://matapi.se/foodstuff/\(foodIndex)"
@@ -49,7 +51,7 @@ class Favourites {
                                     let calories = nutrientValuesDictionary["energyKcal"] as? Float {
                                     DispatchQueue.main.async {
                                         self.favourites[i] = ((index: foodIndex, name: name, calories: calories))
-                                        tableView.reloadData()
+                                        tableView?.reloadData()
                                     }
                                 }
                             } else {
